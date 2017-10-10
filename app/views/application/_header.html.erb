@@ -1,0 +1,20 @@
+<header>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <%= link_to 'MY APP', root_path, class: 'navbar-brand' %>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <% if @user %>
+            <li>
+              <div class="user-header-icon" style="background-image: url(<%= @user['picture']['data']['url'] %>)"></div>
+            </li>
+            <li><p class="navbar-text"><%= @user['name'] %></p></li>
+            <li><%= link_to 'Logout', logout_path %></li>
+        <% else %>
+            <li><%= link_to 'Login', '/auth/developer' %></li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+</header>
