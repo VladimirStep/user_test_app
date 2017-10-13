@@ -12,7 +12,8 @@
             <li><p class="navbar-text"><%= @user['name'] %></p></li>
             <li><%= link_to 'Logout', logout_path %></li>
         <% else %>
-            <li><%= link_to 'Login', '/auth/single_login' %></li>
+            <li><%= link_to 'Single Login', '/auth/single_login' %></li>
+            <li><%= link_to 'Dev Login', '/auth/developer' %></li>
         <% end %>
       </ul>
     </div>
