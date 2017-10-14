@@ -6,16 +6,29 @@
       </div>
       <ul class="nav navbar-nav navbar-right">
         <% if @user %>
-            <li>
-              <div class="user-header-icon" style="background-image: url(<%= @user['picture']['data']['url'] %>)"></div>
-            </li>
-            <li><p class="navbar-text"><%= @user['name'] %></p></li>
-            <li><%= link_to 'Logout', logout_path %></li>
+          <li>
+            <div class="user-header-icon" style="background-image: url(<%= @user[:avatar_url] %>)"></div>
+          </li>
+          <li><p class="navbar-text"><%= @user[:name] %></p></li>
+          <li><%= link_to 'Logout', logout_path %></li>
         <% else %>
-            <li><%= link_to 'Single Login', '/auth/single_login' %></li>
-            <li><%= link_to 'Dev Login', '/auth/developer' %></li>
+          <li><%= link_to 'Single Login', '/auth/single_login' %></li>
+          <li><%= link_to 'Dev Login', '/auth/developer' %></li>
         <% end %>
       </ul>
     </div>
   </nav>
 </header>
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-8 col-md-offset-2">
+        <% flash.each do |key, message| %>
+          <div class="alert alert-<%= key.to_s %>" role="alert">
+            <%= message %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

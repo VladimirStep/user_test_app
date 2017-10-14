@@ -1,16 +1,24 @@
 class SessionsController < ApplicationController
+  skip_before_action :authenticate_user, only: [:new, :create]
+
+  def new
+  end
+
   def create
-    puts auth_hash
+    session[:user_token] = auth_token
+    flash[:success] = 'You have been logged in successfully!'
     redirect_to root_path
   end
 
   def destroy
+    session.delete(:user_token)
+    flash[:success] = 'You have been logged out successfully!'
     redirect_to root_path
   end
 
   private
 
   def auth_hash
-    request.env['omniauth.auth']
+    request.env['omniauth.auth'][:credentials][:token]
   end
 end
