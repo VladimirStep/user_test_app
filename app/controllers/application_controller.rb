@@ -8,8 +8,8 @@ class ApplicationController < ActionController::Base
     unless session[:user_token]
       flash[:warning] = 'You have to login before proceed!'
       redirect_to login_path
-      set_user
     end
+    set_user
   end
 
   def set_user
