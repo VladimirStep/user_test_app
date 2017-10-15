@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
 
   private
 
-  def auth_hash
+  def auth_token
     request.env['omniauth.auth'][:credentials][:token]
   end
 end
