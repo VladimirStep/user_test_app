@@ -5,20 +5,30 @@ class SessionsController < ApplicationController
   end
 
   def create
-    session[:user_token] = auth_token
+    set_user_data
     flash[:success] = 'You have been logged in successfully!'
     redirect_to root_path
   end
 
   def destroy
-    session.delete(:user_token)
+    destroy_user_data
     flash[:success] = 'You have been logged out successfully!'
     redirect_to root_path
   end
 
   private
 
-  def auth_token
-    request.env['omniauth.auth'][:credentials][:token]
+  def set_user_data
+    session[:user_token] = request.env['omniauth.auth'][:credentials][:token]
+    session[:email] = request.env['omniauth.auth'][:info][:email]
+    session[:name] = request.env['omniauth.auth'][:info][:name]
+    session[:avatar_url] = request.env['omniauth.auth'][:info][:avatar_url]
+  end
+
+  def destroy_user_data
+    session.delete(:user_token)
+    session.delete(:email)
+    session.delete(:name)
+    session.delete(:avatar_url)
   end
 end

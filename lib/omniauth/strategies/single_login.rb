@@ -17,8 +17,9 @@ module OmniAuth
 
       info do
         {
-            :name => raw_info['name'],
-            :email => raw_info['email']
+            name: raw_info['name'],
+            email: raw_info['email'],
+            avatar_url: raw_info['avatar_url']
         }
       end
 
@@ -29,7 +30,7 @@ module OmniAuth
       end
 
       def raw_info
-        @raw_info ||= access_token.get('/api/v1/authorizations/me').parsed
+        @raw_info ||= access_token.get("/api/v1/users/me?oauth_token=#{access_token.token}").parsed
       end
     end
   end

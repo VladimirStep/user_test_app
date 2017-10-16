@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
 
   def set_user
     @user = {
+      email: session[:email],
       name: session[:name],
       avatar_url: session[:avatar_url]
     }
