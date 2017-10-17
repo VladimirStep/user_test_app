@@ -7,8 +7,6 @@ module OmniAuth
 
       option :client_options, {
           site: 'http://localhost:3000',
-          # request_token_path: '/api/v1/authorizations/request_token',
-          # access_token_path:  '/api/v1/authorizations/access_token',
           token_url: '/api/v1/authorizations/request_token',
           authorize_url: 'http://localhost:3000/api/v1/authorizations/authorize'
       }
